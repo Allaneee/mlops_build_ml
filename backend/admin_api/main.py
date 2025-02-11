@@ -23,9 +23,11 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
+
 @app.get("/")
 def read_root():
     return {"message": "Admin API is running"}
+
 
 @app.get("/logs/")
 def get_logs():
@@ -33,6 +35,7 @@ def get_logs():
     cur.execute("SELECT * FROM admin_logs")
     logs = cur.fetchall()
     return {"logs": logs}
+
 
 if __name__ == "__main__":
     if os.path.exists(SOCKET_FILE):

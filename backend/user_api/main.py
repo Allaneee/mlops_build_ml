@@ -23,9 +23,11 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
+
 @app.get("/")
 def read_root():
     return {"message": "User API is running"}
+
 
 @app.post("/users/")
 def create_user(name: str, email: str):
@@ -34,6 +36,7 @@ def create_user(name: str, email: str):
     user_id = cur.fetchone()[0]
     conn.commit()
     return {"id": user_id, "name": name, "email": email}
+
 
 if __name__ == "__main__":
     if os.path.exists(SOCKET_FILE):
