@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend_network
+
+  user_api:
+    build: ./backend/user_api
+    container_name: user_api
+    depends_on:
+      - postgres
+    env_file: .env
+    volumes:
+      - /tmp:/tmp
+    networks:
+      - backend_network
+
+  admin_api:
+    build: ./backend/admin_api
+    container_name: admin_api
+    depends_on:
+      - postgres
+    env_file: .env
+    volumes:
+      - /tmp:/tmp
+    networks:
+      - backend_network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    restart: always
+    depends_on:
+      - user_api
+      - admin_api
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx:ro
+      - /tmp:/tmp
+    networks:
+      - backend_network
+
+volumes:
+  pgdata:
+
+networks:
+  backend_network:
