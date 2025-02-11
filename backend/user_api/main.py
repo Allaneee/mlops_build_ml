@@ -32,7 +32,7 @@ def read_root():
 @app.post("/users/")
 def create_user(name: str, email: str):
     """Ajoute un utilisateur à la base de données."""
-    cur.execute("INSERT INTO users (name, email) VALUES (%s, %s) RETURNING id", 
+    cur.execute("INSERT INTO users (name, email) VALUES (%s, %s) RETURNING id",
                 (name, email))
     user_id = cur.fetchone()[0]
     conn.commit()
