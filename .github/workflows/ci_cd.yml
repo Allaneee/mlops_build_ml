@@ -51,6 +51,9 @@ jobs:
       - name: Vérifier que les services tournent
         run: docker ps
 
+      - name: Attendre 10 secondes pour laisser les services démarrer
+        run: sleep 10
+
       - name: Tester User API via Nginx
         run: curl -X GET http://localhost/users || exit 1
 
