@@ -40,4 +40,4 @@ def get_logs():
 if __name__ == "__main__":
     if os.path.exists(SOCKET_FILE):
         os.remove(SOCKET_FILE)
-    uvicorn.run(app, uds=SOCKET_FILE)
+    uvicorn.run(app, uds=SOCKET_FILE, log_level="info")
