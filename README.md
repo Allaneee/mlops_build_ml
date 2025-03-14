@@ -6,9 +6,13 @@ Les APIs utilisent Unix Sockets pour une communication optimisée.
 ## Composants principaux
 
 PostgreSQL → Stocke les données des utilisateurs et des logs d’administration.
+
 User API (FastAPI) → Gère les utilisateurs et communique avec la base de données.
+
 Admin API (FastAPI) → Gère les logs et l’administration.
+
 Nginx → Reverse proxy qui redirige les requêtes vers les bonnes APIs.
+
 Docker Compose → Orchestre le déploiement des services.
 
 ## Schéma:
