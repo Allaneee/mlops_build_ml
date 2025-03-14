@@ -1,1 +1,6 @@
 ![CI/CD](https://github.com/allaneee/mlops_build_ml/actions/workflows/ci_cd.yml/badge.svg)
+
+## Introduction
+
+Ce projet met en place une architecture MLOps avec des microservices en FastAPI, une base de données PostgreSQL, et un reverse proxy Nginx pour centraliser les requêtes.
+Les APIs utilisent Unix Sockets pour une communication optimisée.
