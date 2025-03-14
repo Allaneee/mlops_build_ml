@@ -15,4 +15,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8001
 
 # Lancer l'application avec Uvicorn et Unix Socket
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001", "--uds", "/tmp/admin_api.sock"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001", "--uds", "/var/run/admin_api.sock"]
