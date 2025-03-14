@@ -1,4 +1,5 @@
 import os
+import time
 import uvicorn
 from fastapi import FastAPI
 import psycopg2
@@ -40,6 +41,8 @@ def create_user(name: str, email: str):
 
 
 if __name__ == "__main__":
+    time.sleep(5)
+
     if os.path.exists(SOCKET_FILE):
         os.remove(SOCKET_FILE)
     uvicorn.run(app, uds=SOCKET_FILE, log_level="info")
